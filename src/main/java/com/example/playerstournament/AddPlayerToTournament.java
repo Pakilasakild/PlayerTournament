@@ -34,7 +34,16 @@ public class AddPlayerToTournament {
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == createButton) {
                 Player player = combo.getValue();
-                int wins = Integer.parseInt(winsField.getText().trim());
+                int wins;
+                if (winsField.getText().isEmpty()) {
+                    wins = player.getWins();
+                } else {
+                    wins = Integer.parseInt(winsField.getText().trim());
+                }
+                if (wins < 0){
+                    AlertUtilities.displayAlert("Invalid wins amount!");
+                    return null;
+                }
                 if (TournamentController.containsTourPlayer(player)) {
                     AlertUtilities.displayAlert("Player already exists in tournament.");
                 } else {

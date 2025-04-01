@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.Optional;
+import java.util.OptionalLong;
 
 public class TournamentController {
     @FXML
@@ -32,7 +33,11 @@ public class TournamentController {
     @FXML
     public TableColumn tour_team_column;
     @FXML
+    public TableColumn tour_wins_column;
+    @FXML
     public Button btn_add_player_to_tour;
+    @FXML
+    public Button btn_find_winner;
     @FXML
     static ObservableList<Player> players = FXCollections.observableArrayList(
             new Player("Jonas", "Meskauskas", "Dainava"),
@@ -42,7 +47,7 @@ public class TournamentController {
     @FXML
     static ObservableList<Player> tourPlayers = FXCollections.observableArrayList();
     @FXML
-    public TableColumn tour_wins_column;
+    ObservableList<Player> empty = FXCollections.observableArrayList();
 
 
     @FXML
@@ -93,6 +98,8 @@ public class TournamentController {
                 }
             }
         });
+        table_players.refresh();
+        table_tour.refresh();
     }
 
 
@@ -119,5 +126,19 @@ public class TournamentController {
             }
         }
         return false;
+    }
+    @FXML
+    public static Player getBestPlayer(){
+        Player bestPlayer = new Player("temp", "temp", "temp", -1);
+        for (Player player : tourPlayers){
+            if (player.getWins() > bestPlayer.getWins()){
+                bestPlayer = player;
+            }
+        }
+        return bestPlayer;
+    }
+    @FXML
+    private void showResult(){
+        Optional<Player> winner = CalculateWinner.showAndWait();
     }
 }

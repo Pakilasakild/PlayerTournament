@@ -1,12 +1,13 @@
 package com.example.playerstournament;
 
+import com.example.playerstournament.utilities.AlertUtilities;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.util.Optional;
 
 public class EditPlayerData {
-    public static Optional<Player> showAndWait(){
+    public static Optional<Player> showAndWait() {
         Dialog<Player> dialog = new Dialog<>();
         dialog.setTitle("Edit player data");
         dialog.setHeaderText("Edit data of a player");
@@ -40,15 +41,23 @@ public class EditPlayerData {
             if (dialogButton == createButton) {
                 String name = combo.getValue().getName();
                 String surname = combo.getValue().getSurname();
-                String team = teamField.getText().trim();
+                String team;
+                if (teamField.getText().isEmpty()) {
+                    team = combo.getValue().getTeam();
+                } else {
+                    team = teamField.getText().trim();
+                }
                 int wins;
                 if (winsField.getText().isEmpty()) {
                     wins = combo.getValue().getWins();
                 } else {
                     wins = Integer.parseInt(winsField.getText().trim());
                 }
-                    System.out.println(wins);
-                    return new Player(name, surname, team, wins);
+                if (wins < 0){
+                    AlertUtilities.displayAlert("Invalid wins amount!");
+                    return null;
+                }
+                return new Player(name, surname, team, wins);
             }
             return null;
         });

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.playerstournament.TournamentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.playerstournament.TournamentController">
    <children>
       <Button fx:id="btn_add_player" layoutX="30.0" layoutY="16.0" mnemonicParsing="false" onAction="#addPlayer" prefHeight="50.0" prefWidth="100.0" text="Add player" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="btn_player_data" layoutX="30.0" layoutY="76.0" mnemonicParsing="false" onAction="#editData" prefHeight="50.0" prefWidth="100.0" text="Edit player data" textAlignment="CENTER" wrapText="true" />
@@ -37,5 +37,10 @@
          </font>
       </Label>
       <Button fx:id="btn_add_player_to_tour" layoutX="153.0" layoutY="16.0" mnemonicParsing="false" onAction="#addPlayerToTournament" prefHeight="110.0" prefWidth="100.0" text="Add player to tournament" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="btn_find_winner" layoutX="359.0" layoutY="16.0" mnemonicParsing="false" onAction="#showResult" prefHeight="110.0" prefWidth="216.0" text="Find the winner" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
